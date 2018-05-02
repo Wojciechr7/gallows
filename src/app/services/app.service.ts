@@ -12,6 +12,8 @@ export class AppService {
     public words: Array<Word>;
     private currentPassword: number;
     public letters: Array<Letter>;
+    public looses: number;
+    public isGameEnabled: boolean;
 
 
     constructor() {
@@ -19,19 +21,46 @@ export class AppService {
         this.words = [new Word('WELCOME TO GALLOWS')];
         this.currentPassword = 0;
         this.setWord();
+        this.looses = 0;
+        this.isGameEnabled = false;
 
     }
 
-    public addNewWord(n: string): void {
-        this.words.push(new Word(n));
+    public addNewWord(): void {
+        let n;
+        let pushAllowed: boolean;
+        n = prompt('Type your new word');
+
+        if (n) {
+            for (let i = 0; i < n.length; i++) {
+                pushAllowed = false;
+                for (const key of this.keys) {
+                    if (key.getLetter === n[i].toUpperCase() || n[i].toUpperCase() === ' ') {
+                        pushAllowed = true;
+                        break;
+                    }
+                }
+                if (!pushAllowed) {
+                    break;
+                }
+            }
+
+            if (pushAllowed) {
+                this.words.push(new Word(n));
+            }
+            this.isGameEnabled = false;
+        }
+
     }
 
     public resetWords(): void {
         this.words = [];
+        this.isGameEnabled = false;
     }
 
     public setWord(): void {
         if (this.words.length) {
+            this.isGameEnabled = true;
             const wordArray = this.words[this.currentPassword].getName.split('');
             let letters: Array<Letter>;
             letters = [];
@@ -40,17 +69,68 @@ export class AppService {
                 letters.push(new Letter(item));
             }
             this.letters = letters;
+
+            if (this.currentPassword < this.words.length - 1) {
+                this.currentPassword++;
+            } else {
+                this.currentPassword = 0;
+            }
+            this.looses = 0;
+            this.resetKeys();
         }
     }
 
-    public searchForEquals(clickedLetter: string): void {
-        for (const item of this.letters) {
-            if (item.equal(clickedLetter)) {
-                item.visible = true;
+    public searchForEquals(item: Key): void {
+        if (this.isGameEnabled) {
+            item.disable();
+            const clickedLetter: string = item.getLetter;
+            let foundEquals: boolean;
+            foundEquals = false;
+            for (const letter of this.letters) {
+                if (letter.equal(clickedLetter)) {
+                    letter.visible = true;
+                    foundEquals = true;
+                }
+            }
+            if (!foundEquals) {
+                this.looses++;
+            }
+            if (this.looses === 9) {
+                alert('GAME OVER!!!');
+                this.isGameEnabled = false;
+                this.showLetters();
+            } else {
+                this.winChecker();
             }
         }
     }
 
+    private resetKeys(): void {
+        for (const key of this.keys) {
+            key.enable();
+        }
+    }
+
+    private winChecker(): void {
+        let wonGame: boolean;
+        wonGame = true;
+        for (const letter of this.letters) {
+            if (!letter.visible && letter.getOriginal !== '\xa0\xa0\xa0\xa0') {
+                wonGame = false;
+                break;
+            }
+        }
+        if (wonGame) {
+            alert('Congratulations!!!');
+            this.isGameEnabled = false;
+        }
+    }
+
+    private showLetters() {
+        for (const letter of this.letters) {
+            letter.visible = true;
+        }
+    }
 
 
 }

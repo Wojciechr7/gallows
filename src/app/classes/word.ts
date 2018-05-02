@@ -3,7 +3,7 @@ export class Word {
     private name: string;
 
     constructor(n: string) {
-        this.name = n;
+        this.name = n.toUpperCase();
     }
 
 

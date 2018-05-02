@@ -1,6 +1,5 @@
 <section class="setup">
-  <input type="text" #newPas placeholder="new password">
-  <button (click)="this.as.addNewWord(newPas.value)" class="btn btn-success">ADD</button>
+  <button (click)="this.as.addNewWord()" class="btn btn-success">ADD NEW</button>
   <button (click)="this.as.resetWords()" class="btn btn-warning">RESET ALL</button>
   <p>Words in container: {{this.as.words.length}}</p>
   <button (click)="this.as.setWord()" class="btn btn-info">START</button>
