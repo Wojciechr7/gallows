@@ -3,6 +3,6 @@
   <button (click)="this.as.addNewWord(newPas.value)" class="btn btn-success">ADD</button>
   <button (click)="this.as.resetWords()" class="btn btn-warning">RESET ALL</button>
   <p>Words in container: {{this.as.words.length}}</p>
-  <button class="btn btn-info">START</button>
+  <button (click)="this.as.setWord()" class="btn btn-info">START</button>
 
 </section>

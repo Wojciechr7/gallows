@@ -1,0 +1,9 @@
+.display {
+    width: 100%;
+    border: 5px solid yellow;
+    display: flex;
+}
+
+.display img {
+    margin: auto;
+}

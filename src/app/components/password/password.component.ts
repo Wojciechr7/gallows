@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AppService} from '../../services/app.service';
 
 @Component({
   selector: 'app-password',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(public as: AppService) { }
 
   ngOnInit() {
   }

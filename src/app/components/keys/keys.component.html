@@ -1,1 +1,1 @@
-<button class="btn btn-dark" *ngFor="let item of this.as.keys">{{item.getLetter}}</button>
+<button (click)="this.as.searchForEquals(item.getLetter)" class="btn btn-dark" *ngFor="let item of this.as.keys">{{item.getLetter}}</button>
