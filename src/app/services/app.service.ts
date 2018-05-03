@@ -3,6 +3,8 @@ import {Key} from '../classes/key';
 import {Keys} from '../classes/keys';
 import {Word} from '../classes/word';
 import {Letter} from '../classes/letter';
+import 'rxjs/add/operator/map';
+import { Socket } from 'ng-socket-io';
 
 
 @Injectable()
@@ -16,7 +18,7 @@ export class AppService {
     public isGameEnabled: boolean;
 
 
-    constructor() {
+    constructor(private socket: Socket) {
         this.keys = Keys.createKeys();
         this.words = [new Word('WELCOME TO GALLOWS')];
         this.currentPassword = 0;
@@ -24,13 +26,12 @@ export class AppService {
         this.looses = 0;
         this.isGameEnabled = false;
 
+
+
     }
 
-    public addNewWord(): void {
-        let n;
+    public addNewWord(n) {
         let pushAllowed: boolean;
-        n = prompt('Type your new word');
-
         if (n) {
             for (let i = 0; i < n.length; i++) {
                 pushAllowed = false;
@@ -49,7 +50,6 @@ export class AppService {
                 this.words.push(new Word(n));
             }
         }
-
     }
 
     public resetWords(): void {
@@ -128,6 +128,27 @@ export class AppService {
         for (const letter of this.letters) {
             letter.visible = true;
         }
+    }
+
+
+    public getOnline() {
+        return this.socket
+            .fromEvent<any>('online')
+            .map( data => data.online );
+    }
+
+    public getWord() {
+        return this.socket
+            .fromEvent<any>('new word')
+            .map(data => data.word);
+    }
+
+    public sendNewWord(): void {
+        let n;
+        n = prompt('Type your new word');
+
+        this.socket
+            .emit('new word', n);
     }
 
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AppService} from '../../services/app.service';
 
+
 @Component({
   selector: 'app-setup',
   templateUrl: './setup.component.html',
@@ -10,7 +11,11 @@ export class SetupComponent implements OnInit {
 
   constructor(public as: AppService) { }
 
+
+
+
   ngOnInit() {
+
   }
 
 }
