@@ -10,7 +10,7 @@ export class Keys {
         }
         const polishKeys: Array<string> = ['Ą', 'Ę', 'Ś', 'Ż', 'Ź', 'Ó', 'Ł', 'Ć', 'Ń'];
 
-        for (let item of polishKeys) {
+        for (const item of polishKeys) {
             keys.push(new Key(item.charCodeAt(0)));
         }
         return keys;

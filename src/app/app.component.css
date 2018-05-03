@@ -1,3 +1,30 @@
 h1 {
     text-align: center;
+    color: white;
+    text-decoration: underline;
+}
+main {
+    display: flex;
+}
+
+app-setup {
+    margin: auto;
+    min-width: 300px;
+    text-align: center;
+}
+
+app-display {
+    margin: auto;
+}
+
+app-keys {
+    min-width: 200px;
+    max-width: 350px;
+    margin: auto;
+}
+
+@media screen and (max-width: 950px) {
+    main {
+        flex-flow: column;
+    }
 }

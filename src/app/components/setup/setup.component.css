@@ -1,6 +1,6 @@
 .setup {
-    height: 200px;
-    width: 100%;
-    border: 5px solid red;
+    display: flex;
+    flex-flow: column;
+    color: white;
 }
 

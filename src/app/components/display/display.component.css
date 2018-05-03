@@ -1,9 +1,14 @@
 .display {
-    width: 100%;
-    border: 5px solid yellow;
-    display: flex;
+ display: flex;
 }
 
 .display img {
     margin: auto;
+}
+
+@media screen and (max-width: 450px) {
+    .display img {
+        width: 100%;
+        margin: 5px auto;
+    }
 }

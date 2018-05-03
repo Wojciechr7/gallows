@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('~bootstrap/dist/css/bootstrap.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+
+html, body {
+    background: #250931;
+    background-repeat: no-repeat;
+    background-size: 100%, 100%;
+    font-family: 'Open Sans Condensed', sans-serif;
+}

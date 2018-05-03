@@ -48,14 +48,12 @@ export class AppService {
             if (pushAllowed) {
                 this.words.push(new Word(n));
             }
-            this.isGameEnabled = false;
         }
 
     }
 
     public resetWords(): void {
         this.words = [];
-        this.isGameEnabled = false;
     }
 
     public setWord(): void {
