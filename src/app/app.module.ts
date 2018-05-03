@@ -9,6 +9,7 @@ import { KeysComponent } from './components/keys/keys.component';
 import {AppService} from './services/app.service';
 import { PasswordComponent } from './components/password/password.component';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { HttpClientModule } from '@angular/common/http';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -23,6 +24,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
   ],
   imports: [
     BrowserModule,
+      HttpClientModule,
       SocketIoModule.forRoot(config)
   ],
   providers: [AppService],

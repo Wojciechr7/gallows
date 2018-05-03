@@ -1,8 +1,17 @@
 <section class="setup">
   <button (click)="this.as.sendNewWord()" class="btn btn-success">ADD NEW</button>
+  <button (click)="this.addRandom()" class="btn btn-danger">ADD RANDOM</button>
   <button (click)="this.as.resetWords()" class="btn btn-warning">CLEAR CONTAINER</button>
   <p>Words in container: {{this.as.words.length}}</p>
   <button (click)="this.as.setWord()" class="btn btn-info">START</button>
   <p>Game status: {{this.as.isGameEnabled ? 'STARTED' : 'PAUSED'}}</p>
 
+
+  <div class="loading-container">
+    <div class="e-loadholder">
+      <div class="m-loader">
+        <span class="e-text">Loading</span>
+      </div>
+    </div>
+  </div>
 </section>

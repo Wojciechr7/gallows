@@ -3,7 +3,6 @@ import {AppService} from './services/app.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {Socket} from 'ng-socket-io';
-import * as $ from 'jquery';
 
 
 @Component({
